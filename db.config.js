@@ -32,6 +32,6 @@ db.Adherent = require('./models/adherent')(sequelize)
 // })
 //db.sequelize.sync({alter: true})
 //db.sequelize.sync({force:true})
-//db.Adherent.sync({force:true})
-db.sequelize.sync()
+db.Adherent.sync({force:true})
+//db.sequelize.sync()
 module.exports = db
