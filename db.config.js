@@ -7,7 +7,7 @@ const { Sequelize } = require('sequelize')
 let sequelize = new Sequelize(
     process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
         host: process.env.DB_HOST,
-        //port: process.env.DB_PORT,
+        port: process.env.DB_PORT,
         dialect: 'postgres',
         logging: false
     }
@@ -31,7 +31,7 @@ db.Adherent = require('./models/adherent')(sequelize)
 //     console.log('Database Sync Error', err)
 // })
 //db.sequelize.sync({alter: true})
-//db.sequelize.sync({force:true})
+db.sequelize.sync({force:true})
 //db.Adherent.sync({force:true})
-db.sequelize.sync()
+//db.sequelize.sync()
 module.exports = db
