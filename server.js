@@ -33,7 +33,10 @@ const auth_router = require('./routes/auth')
 /******************************/
 /*** Mise en place du routage */
 
-app.get('/', (req, res) => res.send(`I'm online. All is OK !`))
+app.get('/', (req, res) => {
+    console.log('bla bla bla__________')
+    return res.send(`I'm online. All is OK !`)
+})
 
 app.use('/users', user_router)
 //app.use('/users', checkTokenMiddleware, user_router)
