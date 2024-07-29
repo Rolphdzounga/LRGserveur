@@ -41,7 +41,7 @@ exports.getAdherent = async (req, res) => {
 }
 
 exports.addAdherent = async (req, res) => {
-    /*console.log({
+    console.log({
         prenoms: 'A',
         noms: 'A',
         email: 'rolphfrancel@gmail.com',
@@ -62,7 +62,7 @@ exports.addAdherent = async (req, res) => {
         montantquotisation: '10000', profession: 'a',
         lieunaissance: 'a',
         datenaissance: '2024-07-09T23:00:00.000Z',
-        dateversement: '2024-07-23T23:00:00.000Z',signature:'ma signature',photo:'ma photo'})*/
+        dateversement: '2024-07-23T23:00:00.000Z',signature:'ma signature',photo:'ma photo'})
     const { prenoms,
         noms,
         email,
@@ -109,9 +109,9 @@ exports.addAdherent = async (req, res) => {
         // Vérification si le coktail existe
         let adherent = await Adherent.findOne({ where: { email: email }, raw: true })
         if (adherent !== null) {
-            return res.status(409).json({ message: `Cet adherent ${email} exists déjà !` })
+            return res.status(409).json({ message: `The adherent ${email} already exists !` })
         }
-        //console.log({...req.body,photo:'ma photo',signature:'ma signature'})
+        console.log({...req.body,photo:'ma photo',signature:'ma signature'})
         // Céation du adherent
         //adherent = await Adherent.create({...req.body,photo:'ma photo',signature:'ma signature'})
         adherent = await Adherent.create({
@@ -138,9 +138,8 @@ exports.addAdherent = async (req, res) => {
             dateversement: dateversement,signature:signature,photo:photo})
 
         console.log(adherent)
-        return res.json({ message: 'Adherent créé avec succès', data: adherent })
+        return res.json({ message: 'Adherent Created', data: adherent })
     }catch(err){
-        console.log(err)
         return res.status(500).json({ message: 'Database Error', error: err })
     }
 }
@@ -157,7 +156,7 @@ exports.updateAdherent = async (req, res) => {
         // Recherche du adherent et vérification
         let adherent = await Adherent.findOne({ where: { id: adherentId }, raw: true })
         if (adherent === null) {
-            return res.status(404).json({ message: "Cet adherent n'existe pas !" })
+            return res.status(404).json({ message: 'This adherent does not exist !' })
         }
 
         // Mise à jour du adherent
