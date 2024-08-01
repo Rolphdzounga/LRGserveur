@@ -20,7 +20,6 @@ exports.login = async (req, res) => {
     try{
         // Vérification si l'utilisateur existe
         let user = await User.findOne({ where: {email: email}, raw: true})
-        console.log('user___',user?.noms)
         if(user === null){
             return res.status(401).json({ message: 'This account does not exists !'})
         }
@@ -31,28 +30,14 @@ exports.login = async (req, res) => {
         if(!test){
             return res.status(401).json({ message: 'Wrong password'})
         }
-/**
- * const token = jwt.sign(
-      {
-        userId: foundUser.dataValues.id,
-        username: foundUser.dataValues.username,
-        profile: profile,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "24h" }
-    );
- * 
- */
+
         // Génération du token et envoi
         const token = jwt.sign({
             id: user.id,
             nom: user.nom,
             prenom: user.prenom,
             email: user.email
-        }, 
-        process.env.JWT_SECRET, 
-        { expiresIn: "60s"}
-    )
+        }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURING})
         
         return res.json({access_token: token})
     }catch(err){

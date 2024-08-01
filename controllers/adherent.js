@@ -107,14 +107,14 @@ exports.addAdherent = async (req, res) => {
 
     try{
         // Vérification si le coktail existe
-        let adherent = await Adherent.findOne({ where: { email: email }, raw: true })
+        /*let adherent = await Adherent.findOne({ where: { email: email }, raw: true })
         if (adherent !== null) {
             return res.status(409).json({ message: `Cet adherent ${email} exists déjà !` })
-        }
+        }*/
         //console.log({...req.body,photo:'ma photo',signature:'ma signature'})
         // Céation du adherent
         //adherent = await Adherent.create({...req.body,photo:'ma photo',signature:'ma signature'})
-        adherent = await Adherent.create({
+        let adherent = await Adherent.create({
             prenoms: prenoms,
             noms: noms,
             email: email,
