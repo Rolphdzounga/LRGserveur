@@ -12,12 +12,12 @@ let router = express.Router()
 /*** Middleware pour logger dates de requete */
 router.use( (req, res, next) => {
     const event = new Date()
-    console.log('Cocktail Time:', event.toString())
+    console.log('AdherentCtrl Time:', event.toString())
     next()
 })
 
 /**************************************/
-/*** Routage de la ressource Cocktail */
+/*** Routage de la ressource  */
 
 router.get('', adherentCtrl.getAllAdherents)
 
