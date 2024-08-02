@@ -21,6 +21,7 @@ exports.login = async (req, res) => {
         // Vérification si l'utilisateur existe
         let user = await User.findOne({ where: {email: email}, raw: true})
         console.log('user___',user?.noms)
+        console.log('______________',JSON.stringify(User.findAll()))
         if(user === null){
             return res.status(401).json({ message: 'This account does not exists !'})
         }
